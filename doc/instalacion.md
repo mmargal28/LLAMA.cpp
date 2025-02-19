@@ -1,44 +1,77 @@
-## Instalación
+# 📌 Instalación de `llama.cpp`
 
-Para instalar y usar `llama.cpp`, sigue los pasos a continuación.
+Guía para instalar y usar `llama.cpp` en tu sistema.
 
-### Requisitos previos
-Saber si usaremos tarjeta grafica o no y que marca tenemos AMD O NVIDIA.
-- CMake 3.15 o superior
-- Un compilador de C++ moderno (como g++, clang++, etc.)
-- Bibliotecas estándar de C++17
+## ✅ Requisitos previos
+Antes de comenzar, asegúrate de tener:
+- **CMake** 3.15 o superior
+- **Compilador de C++ moderno** (g++, clang++, etc.)
+- **Bibliotecas estándar de C++17**
+- **Soporte para GPU** (opcional, según tu hardware)
 
-### Pasos de instalación
-1. Instalar y actualizar dependencias.
+---
+
+## 🔧 1. Instalación de dependencias
+Ejecuta el siguiente comando para instalar las herramientas necesarias:
+
 ```bash
 apt update && apt install -y cmake build-essential git
 ```
-2. Dependencias de graficas.
-Librerias ROCm
+
+### 🚀 Soporte para GPU (Opcional)
+Si tienes una tarjeta gráfica y quieres aprovecharla:
+
+#### 🔴 Para GPUs **AMD** (ROCm)
 ```bash
 apt install rocm-opencl-runtime -y
 ```
-Librerias CUDA
+
+#### 🟢 Para GPUs **NVIDIA** (CUDA)
 ```bash
 apt install nvidia-cuda-toolkit -y
 ```
-2. Clona el repositorio:
+
+---
+
+## 💽 2. Clonar el repositorio
+Descarga `llama.cpp` desde GitHub y accede al directorio:
+
 ```bash
-  git clone https://github.com/ggerganov/llama.cpp.git
-  cd llama.cpp
+git clone https://github.com/ggerganov/llama.cpp.git
+cd llama.cpp
 ```
-2. Compilacion:
- ```bash
- # Crea una carpeta de compilación y entramos en ella.
+
+---
+
+## 🔨 3. Compilación del código
+Primero, crea un directorio para la compilación:
+
+```bash
 mkdir build && cd build
 ```
- ```bash
- # Ejecuta CMake para configurar el proyecto y compilar
+
+Luego, ejecuta **CMake** para configurar y compilar el proyecto:
+
+```bash
 cmake ..
 cmake --build . --parallel
 ```
- ```bash
- #Para graficas AMD
+
+### 🔄 Compilación con soporte para GPU
+Si deseas usar tu GPU, compila con la opción correspondiente:
+
+#### 🔴 Para GPUs **AMD** (ROCm)
+```bash
 cmake .. -DLLAMA_HIPBLAS=ON
 cmake --build . --parallel
-#Para n
+```
+
+#### 🟢 Para GPUs **NVIDIA** (CUDA)
+```bash
+cmake .. -DLLAMA_CUDA=ON
+cmake --build . --parallel
+```
+
+---
+
+
